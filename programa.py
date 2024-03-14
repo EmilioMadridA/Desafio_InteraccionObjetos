@@ -1,4 +1,4 @@
-Clases externas
+# Clases externas
 from tienda import Restaurante, Supermercado, Farmacia
 from producto import Producto
 
@@ -40,24 +40,25 @@ def main():
 
     # Ciclo while principal de acciones.
     while True:
-        accion = input("¿Qué desea hacer? (Ingresar Producto/Listar Productos/Realizar Venta/Salir): ").lower()
+        accion = int(input("¿Qué desea hacer? 1.- Ingresar Producto \n 2.- Listar Productos\n 3.- Realizar Venta\n 4.- Salir\n): "))
+        accion_2 = validar(accion, [1, 2, 3, 4])
         # Validación de acción seleccionada por usuario.
-        if accion == "ingresar producto":
+        if accion_2 == 1:
             # Solicitar datos del producto y crear la instancia
             nombre_producto = input("Nombre del producto: ").lower()
             precio_producto = float(input("Precio del producto: "))
             stock_producto = int(input("Stock del producto (presione Enter para 0): ") or "0")
             producto = Producto(nombre_producto, precio_producto, stock_producto)
             tienda.ingresar_producto(producto)
-        elif accion == "listar productos":
+        elif accion_2 == 2:
             # Listar los productos de la tienda
             print(tienda.listar_productos())
-        elif accion == "realizar venta":
+        elif accion_2 == 3:
             # Solicitar datos de la venta y realizarla
             nombre_producto = input("Nombre del producto a vender: ").lower()
             cantidad = int(input("Cantidad: "))
             tienda.realizar_venta(nombre_producto, cantidad)
-        elif accion == "salir":
+        else:
             # Salir del programa
             break
 
